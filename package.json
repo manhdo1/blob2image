@@ -1,0 +1,22 @@
+{
+  "name": "convert-blob2image",
+  "version": "1.0.0",
+  "description": "Convert browser blob URLs (e.g. TikTok) to downloadable image files",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-bookmarklet.js",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "terser": "^5.39.0"
+  },
+  "keywords": [
+    "blob",
+    "image",
+    "converter",
+    "tiktok",
+    "bookmarklet"
+  ],
+  "author": "Manh Do",
+  "license": "MIT"
+}

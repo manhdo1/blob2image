@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blob2Image</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #f3f4f6; color: #111827; line-height: 1.5; }
+    main { max-width: 640px; margin: 0 auto; padding: 32px 20px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-top: 16px; }
+    .warn { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .bookmark { display: inline-block; padding: 10px 16px; border-radius: 999px; background: #2563eb; color: #fff; font-weight: 700; text-decoration: none; }
+    button { border: 1px solid #d1d5db; background: #fff; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+    ol { color: #4b5563; padding-left: 20px; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Blob2Image</h1>
+    <p>Convert blob URL TikTok sang file ảnh.</p>
+
+    <div class="warn">
+      Không bookmark trang này bằng Ctrl+D. URL bookmark phải bắt đầu bằng <code>javascript:</code>.
+    </div>
+
+    <section class="card">
+      <h2>Cài bookmarklet</h2>
+      <p>Kéo nút vào bookmark bar, hoặc Copy URL rồi tạo bookmark thủ công.</p>
+      <div class="row">
+        <a class="bookmark" id="bookmarklet" href="javascript:void(0)" draggable="true">Blob2Image</a>
+        <button type="button" id="copy-btn">Copy URL</button>
+      </div>
+      <ol>
+        <li><code>npm run build</code> → <code>npm run serve</code></li>
+        <li>Copy URL hoặc kéo nút Blob2Image vào bookmark bar</li>
+        <li>Trên TikTok: click bookmark → Paste blob URL → Download</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="src/install-data.js"></script>
+  <script>
+    const href = window.BLOB2IMAGE_HREF;
+    if (!href) {
+      document.querySelector('.row').innerHTML = '<span style="color:#dc2626">Chạy npm run build trước.</span>';
+    } else {
+      const link = document.getElementById('bookmarklet');
+      link.href = href;
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Kéo nút vào bookmark bar hoặc dùng Copy URL.');
+      });
+      document.getElementById('copy-btn').addEventListener('click', async () => {
+        await navigator.clipboard.writeText(href);
+        alert('Đã copy bookmarklet URL.');
+      });
+    }
+  </script>
+</body>
+</html>
