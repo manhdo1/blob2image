@@ -12,27 +12,30 @@ npm run serve
 
 Mở `http://localhost:3000` → **Copy URL** hoặc kéo **Blob2Image** vào bookmark bar.
 
-URL bookmark phải bắt đầu bằng `javascript:`, không phải `http://localhost`.
-
 ## Dùng trên TikTok
 
 1. DevTools → Elements → copy `src` của `<img>` (`blob:https://...`)
 2. Click bookmark **Blob2Image**
-3. Bấm **Paste** (hoặc Ctrl+V) → chọn format → **Convert & Download**
+3. Bấm **Paste** → chọn format → **Convert & Download**
 
-Đóng ảnh full/lightbox TikTok trước nếu không gõ được vào input.
+## Drive2PDF (Google Drive)
 
-## Output
+Google Drive không hỗ trợ bookmarklet — chỉ dùng **Console**.
 
-Giữ gốc / PNG / JPEG / WebP (quality slider cho JPEG & WebP).
+```bash
+npm run build:drive
+npm run serve
+```
+
+Mở `http://localhost:3000/drive-index.html` → **Copy script (Console)** → dán vào Console trên Google Drive.
 
 ## Structure
 
 ```
-src/converter.js   # fetch blob, convert, download
-src/ui.js          # panel UI
-src/bookmarklet.js # toggle entry
+src/converter.js, ui.js, bookmarklet.js   # Blob2Image (TikTok)
+src/drive/app.js, entry.js                # Drive2PDF (console)
 scripts/build-bookmarklet.js
+scripts/build-drive-console.js
 ```
 
 ## License

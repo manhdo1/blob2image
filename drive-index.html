@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drive2PDF</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #f3f4f6; color: #111827; line-height: 1.5; }
+    main { max-width: 640px; margin: 0 auto; padding: 32px 20px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-top: 16px; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    button.primary { border: 0; background: #1a73e8; color: #fff; border-radius: 8px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
+    button { border: 1px solid #d1d5db; background: #fff; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+    ol { color: #4b5563; padding-left: 20px; }
+    code { font-family: Consolas, monospace; }
+    a { color: #1a73e8; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Drive2PDF</h1>
+    <p>Ghép trang ảnh đã render trên Google Drive thành PDF. Dán script vào Console (bookmarklet không dùng được trên Drive).</p>
+
+    <section class="card">
+      <h2>Copy script</h2>
+      <div class="row">
+        <button type="button" class="primary" id="copy-btn">Copy script (Console)</button>
+      </div>
+      <ol>
+        <li><code>npm install && npm run build:drive && npm run serve</code></li>
+        <li>Bấm <strong>Copy script</strong> ở trên</li>
+        <li>Mở PDF trên <code>https://drive.google.com/file/d/...</code></li>
+        <li>F12 → Console → dán → Enter</li>
+        <li>Cuộn tài liệu → <strong>Quét trang</strong> → <strong>Tải PDF</strong></li>
+      </ol>
+      <p id="status" style="font-size:13px;color:#6b7280;margin-top:12px;"></p>
+      <p><a href="index.html">← Blob2Image (TikTok)</a></p>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('copy-btn').addEventListener('click', async () => {
+      const status = document.getElementById('status');
+      try {
+        const res = await fetch('/drive-console.min.js');
+        if (!res.ok) throw new Error('Chạy npm run build:drive && npm run serve trước.');
+        await navigator.clipboard.writeText(await res.text());
+        status.textContent = 'Đã copy. Dán vào Console trên Google Drive.';
+        status.style.color = '#059669';
+      } catch (err) {
+        status.textContent = err.message || 'Copy thất bại.';
+        status.style.color = '#dc2626';
+      }
+    });
+  </script>
+</body>
+</html>

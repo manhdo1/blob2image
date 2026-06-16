@@ -5,7 +5,12 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build-bookmarklet.js",
+    "build:drive": "node scripts/build-drive-console.js",
+    "build:all": "npm run build && npm run build:drive",
     "serve": "npx serve ."
+  },
+  "dependencies": {
+    "jspdf": "^3.0.1"
   },
   "devDependencies": {
     "terser": "^5.39.0"
