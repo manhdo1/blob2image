@@ -180,17 +180,16 @@ Phiên bản thực tế: **dán script vào DevTools Console** trên Google Dri
 ### Cấu trúc mã nguồn
 
 ```
-src/drive/app.js      # scan, extract, PDF, UI (một module)
-src/drive/entry.js    # mở panel sau khi dán
-scripts/build-drive-console.js
-drive-index.html      # Copy script (Console)
-drive-console.min.js  # output build
+src/drive2pdf/app.js, entry.js
+public/drive2pdf/index.html
+public/dist/drive2pdf.min.js
+scripts/build-drive2pdf.js
 ```
 
 ### Luồng người dùng
 
 1. `npm run build:drive && npm run serve`
-2. Mở `drive-index.html` → **Copy script (Console)**
+2. Mở `http://localhost:3000/drive2pdf/` → **Copy script (Console)**
 3. Mở `https://drive.google.com/file/d/...` → F12 → Console → dán → Enter
 4. Cuộn tài liệu → **Quét trang** → **Tải PDF**
 

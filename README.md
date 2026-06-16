@@ -1,42 +1,45 @@
-# Blob2Image
+# Blob Tools
 
-Convert `blob:https://www.tiktok.com/...` sang file ảnh trên cùng tab TikTok.
+Browser tools convert blob URL và ghép PDF từ Google Drive.
+
+## Cấu trúc
+
+```
+src/
+  blob2image/     # TikTok blob → image (bookmarklet)
+  drive2pdf/      # Google Drive → PDF (console script)
+public/
+  index.html      # trang chủ
+  blob2image/     # trang cài bookmarklet
+  drive2pdf/      # trang copy console script
+  dist/           # build output (generated)
+scripts/
+  build-blob2image.js
+  build-drive2pdf.js
+docs/
+  drive2pdf.md    # tài liệu kỹ thuật Drive2PDF
+```
 
 ## Setup
 
 ```bash
 npm install
-npm run build
+npm run build:all
 npm run serve
 ```
 
-Mở `http://localhost:3000` → **Copy URL** hoặc kéo **Blob2Image** vào bookmark bar.
+Mở `http://localhost:3000`
 
-## Dùng trên TikTok
+## Blob2Image (TikTok)
 
-1. DevTools → Elements → copy `src` của `<img>` (`blob:https://...`)
-2. Click bookmark **Blob2Image**
-3. Bấm **Paste** → chọn format → **Convert & Download**
+1. Vào `/blob2image/` → copy bookmarklet
+2. Trên TikTok: click bookmark → paste blob URL → download
 
 ## Drive2PDF (Google Drive)
 
-Google Drive không hỗ trợ bookmarklet — chỉ dùng **Console**.
-
-```bash
-npm run build:drive
-npm run serve
-```
-
-Mở `http://localhost:3000/drive-index.html` → **Copy script (Console)** → dán vào Console trên Google Drive.
-
-## Structure
-
-```
-src/converter.js, ui.js, bookmarklet.js   # Blob2Image (TikTok)
-src/drive/app.js, entry.js                # Drive2PDF (console)
-scripts/build-bookmarklet.js
-scripts/build-drive-console.js
-```
+1. Vào `/drive2pdf/` → **Copy script (Console)**
+2. Mở PDF trên Drive → F12 → Console → dán → Enter
+3. **Quét trang** → **Tải PDF**
 
 ## License
 

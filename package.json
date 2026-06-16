@@ -1,13 +1,13 @@
 {
   "name": "convert-blob2image",
   "version": "1.0.0",
-  "description": "Convert browser blob URLs (e.g. TikTok) to downloadable image files",
+  "description": "Browser blob tools: TikTok image converter & Google Drive PDF",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-bookmarklet.js",
-    "build:drive": "node scripts/build-drive-console.js",
+    "build": "node scripts/build-blob2image.js",
+    "build:drive": "node scripts/build-drive2pdf.js",
     "build:all": "npm run build && npm run build:drive",
-    "serve": "npx serve ."
+    "serve": "npx serve public"
   },
   "dependencies": {
     "jspdf": "^3.0.1"
@@ -20,7 +20,8 @@
     "image",
     "converter",
     "tiktok",
-    "bookmarklet"
+    "google-drive",
+    "pdf"
   ],
   "author": "Manh Do",
   "license": "MIT"

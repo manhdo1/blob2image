@@ -1,4 +1,4 @@
 node_modules/
-bookmarklet.bundle.js
-bookmarklet.href.txt
-drive-console.bundle.js
+public/dist/
+public/blob2image/install-data.js
+public/blob2image/bookmarklet.href.txt
